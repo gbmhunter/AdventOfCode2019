@@ -1,8 +1,10 @@
-use std::fs::File;
-use std::io::{self, prelude::*, BufReader};
 
-fn main() -> io::Result<()> {
-    let file = File::open("src/input.txt")?;
+use std::fs::File;
+use std::io::{prelude::*, BufReader};
+
+
+pub fn main() {
+    let file = File::open("src/day01/input.txt").unwrap();
     let reader = BufReader::new(file);
 
     let mut module_masses: Vec<u32> = Vec::new();
@@ -21,12 +23,10 @@ fn main() -> io::Result<()> {
         fuel_sum_with_fuel += (fuel_for_module as i32) + extra_fuel;
     }
 
-    println!("part 1: fuel_sum = {}", fuel_sum);
+    println!("day 01 part 1: fuel_sum = {}", fuel_sum);
 
-    println!("part 2: fuel_sum_with_fuel = {}", fuel_sum_with_fuel);
+    println!("day 01 part 2: fuel_sum_with_fuel = {}", fuel_sum_with_fuel);
 
-
-    Ok(())
 }
 
 fn calc_extra_fuel(fuel_weight: i32) -> i32 {
