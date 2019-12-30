@@ -41,4 +41,28 @@ pub fn main() {
     }
     println!("day 06 part 1: count = {}", count);
 
+    let mut santa_parents = find_parents(&child_to_parent_map, String::from("SAN"));
+    let mut you_parents = find_parents(&child_to_parent_map, String::from("YOU"));
+
+    santa_parents.reverse();
+    you_parents.reverse();
+
+    let mut i = 0;
+    loop {
+        if santa_parents[i] != you_parents[i] {
+            break;
+        }
+        i += 1;
+    }
+    println!("shared_parent_count = {}", i);
+}
+
+pub fn find_parents(child_to_parent_map: &HashMap<String, String>, mut name: String) -> Vec<String> {
+    let mut parents: Vec<String> = Vec::new();
+    while let Some(parent) = child_to_parent_map.get(&name) {
+        // println!("parent = {}", parent);
+        parents.push(parent.clone());
+        name = parent.clone();
+    }
+    return parents;
 }
