@@ -18,10 +18,9 @@ pub fn main() {
     let mut child_to_parent_map: HashMap<String, String> = HashMap::new();
 
     // Read the file line by line using the lines() iterator from std::io::BufRead.
-    for (index, line) in reader.lines().enumerate() {
+    for (_index, line) in reader.lines().enumerate() {
         let line = line.unwrap(); // Ignore errors.
         // Show the line and its number.
-        // println!("{}. {}", index + 1, &line);
         let parts: Vec<&str> = line.split(")").collect();
         let central_planet_name = parts[0].to_string();
         let orbiting_planet_name = parts[1].to_string();
@@ -32,9 +31,7 @@ pub fn main() {
 
     let mut count = 0;
     for mut child in child_to_parent_map.keys() {
-        // println!("child = {}", child);
         while let Some(parent) = child_to_parent_map.get(child) {
-            // println!("parent = {}", parent);
             child = parent;
             count += 1;
         }
@@ -54,7 +51,12 @@ pub fn main() {
         }
         i += 1;
     }
-    println!("shared_parent_count = {}", i);
+    let shared_parent_count = i;
+    let num_santa_parents_to_shared_parent = santa_parents.len() - shared_parent_count;
+    let num_you_parents_to_shared_parent = you_parents.len() - shared_parent_count;
+
+    let num_orbital_transfers = num_santa_parents_to_shared_parent + num_you_parents_to_shared_parent;
+    println!("day 06 part 2: num_orbital_transfers = {}", num_orbital_transfers);
 }
 
 pub fn find_parents(child_to_parent_map: &HashMap<String, String>, mut name: String) -> Vec<String> {

@@ -23,7 +23,7 @@ fn run_computer(mut memory: Vec<i32>, input: i32) -> (Vec<i32>, Vec<i32>) {
     // println!("run_computer() called.");
     let mut curr_pos: usize = 0;
     let mut outputs: Vec<i32> = Vec::new();
-    while true {
+    loop {
         let op_code_and_parameter_mode = memory[curr_pos];
         // println!("op_code_and_parameter_mode = {}", op_code_and_parameter_mode);
         let mut op_code_and_parameters_mode_vec = number_to_vec(op_code_and_parameter_mode as i32);
@@ -48,7 +48,7 @@ fn run_computer(mut memory: Vec<i32>, input: i32) -> (Vec<i32>, Vec<i32>) {
             memory[param_3 as usize] = output_value;
             curr_pos += 4;
         } else if op_code == 2 {
-            let output_idx = memory[curr_pos + 3] as usize;
+            let _output_idx = memory[curr_pos + 3] as usize;
             let param_1 = parse_param(&memory, curr_pos, 1);
             let param_2 = parse_param(&memory, curr_pos, 2);
             let param_3 = memory[curr_pos + 3];

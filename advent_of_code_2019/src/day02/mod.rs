@@ -42,7 +42,7 @@ pub fn main() {
 
 pub fn run_computer(mut memory: Vec<u32>) -> Vec<u32> {
     let mut curr_pos = 0;
-    while true {
+    loop {
         let op_code = memory[curr_pos];
         if op_code == 1 {
             let operand_1 = memory[memory[curr_pos + 1] as usize];

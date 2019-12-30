@@ -9,7 +9,7 @@ pub fn main() {
     let line_positions_2 = parse_line(input_by_line[1]);
 
     let mut lowest_manhatten_distance: Option<i32> = None;
-    let mut lowest_key: Option<(i32, i32)> = None;
+    let mut _lowest_key: Option<(i32, i32)>;
     let mut lowest_combined_steps: Option<i32> = None;
     for (key, value) in &line_positions_1 {
         let same_pos = line_positions_2.get(key);
@@ -22,11 +22,11 @@ pub fn main() {
             if lowest_manhatten_distance.is_none() {
                 // println!("Setting new winner.");
                 lowest_manhatten_distance = Some(manhatten_distance);
-                lowest_key = Some(*key);
+                _lowest_key = Some(*key);
             } else if manhatten_distance < lowest_manhatten_distance.unwrap() {
                 // println!("Setting new winner.");
                 lowest_manhatten_distance = Some(manhatten_distance);
-                lowest_key = Some(*key);
+                _lowest_key = Some(*key);
             }
 
             if lowest_combined_steps.is_none() {
@@ -54,7 +54,7 @@ fn parse_line(line_cmds_as_str: &str) -> HashMap<(i32, i32), i32> {
         // println!("Parsing cmd = {}. curr_pos = {:?}", line_cmd, curr_pos);
         let cmd = line_cmd.chars().nth(0).unwrap();
         let num_units: u32 = line_cmd[1..].parse().unwrap();
-        for i in 0..num_units {
+        for _i in 0..num_units {
             num_steps += 1;
 
             // Update current position based on command direction
